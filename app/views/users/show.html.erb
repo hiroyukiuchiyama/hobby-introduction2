@@ -1,0 +1,13 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2 class="mt-3">New hobby</h2>
+      <%=render 'hobbys/form', hobby: @hobby %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Hobbies</h2>
+      <%= render 'hobbys/index',hobbys: @hobbys %>
+
+    </div>
+  </div>
+</div>
