@@ -54,4 +54,12 @@ class HobbysController < ApplicationController
         
     end
 
+  def ensure_correct_user
+    @hobby = Hobby.find(params[:id])
+    @user = @hobby.user
+    unless @user == current_user
+      redirect_to hobby_path
+    end
+  end
+
 end
