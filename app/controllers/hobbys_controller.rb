@@ -45,5 +45,13 @@ class HobbysController < ApplicationController
          @hobby.destroy
          redirect_to hobbys_path 
      end
+    
+    
+    private
+    
+    def hobby_params
+        params.require(:hobby).permit(:title, :body,:rate, hobby_image_attributes: [:image])
+        
+    end
 
 end
