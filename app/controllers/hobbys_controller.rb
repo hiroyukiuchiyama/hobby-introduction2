@@ -1,5 +1,5 @@
 class HobbysController < ApplicationController
-    before_action :ensure_correct_user, only:[:edit, :update,:destroy]
+      before_action :ensure_correct_user, only:[:edit, :update,:destroy]
     
      def show
          @hobby = Hobby.find(params[:id])
@@ -16,6 +16,7 @@ class HobbysController < ApplicationController
      end
      
      def create
+        @hobby = Hobby.new(hobby_params)
         @hobby.score = Language.get_data(hobby_params[:body])  #この行を追加
         @hobby.user_id = current_user.id
       if @hobby.save
@@ -52,13 +53,4 @@ class HobbysController < ApplicationController
         params.require(:hobby).permit(:title, :body,:rate, hobby_image_attributes: [:image])
         
     end
-
-  def ensure_correct_user
-    @hobby = Hobby.find(params[:id])
-    @user = @hobby.user
-    unless @user == current_user
-      redirect_to hobby_path
-    end
-  end
-
 end
